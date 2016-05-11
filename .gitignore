@@ -1,0 +1,7 @@
+*~
+
+*.pyc
+local.py
+db.sqlite3
+
+node_modules
