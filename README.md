@@ -28,7 +28,7 @@ To setup the django web app:
 
 ```
 # In a different shell
-cd ../server
+cd alp-mail/server
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py createsuperuser
