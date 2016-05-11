@@ -21,7 +21,7 @@ To setup the haraka SMTP server:
 git clone https://github.com/theju/alp-mail.git  # Clone the source
 cd alp-mail/mailer
 npm install
-haraka -c .
+./node_modules/.bin/haraka -c .
 ```
 
 To setup the django web app:
