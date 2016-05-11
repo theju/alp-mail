@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Address(models.Model):
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     enabled = models.BooleanField(default=True)
     description = models.TextField(null=True)
     created_on = models.DateTimeField(auto_now_add=True)
