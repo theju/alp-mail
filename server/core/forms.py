@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import IncomingEmail, RejectedEmail
+from .models import IncomingEmail
 
 
 class EmailForm(forms.ModelForm):
@@ -17,6 +17,7 @@ class IncomingEmailForm(EmailForm):
         model = IncomingEmail
 
 
-class RejectedEmailForm(EmailForm):
-    class Meta(EmailFormMeta):
-        model = RejectedEmail
+class AuthEmailForm(forms.ModelForm):
+    class Meta:
+        model = IncomingEmail
+        fields = ["sender", "recipients"]

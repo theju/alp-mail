@@ -21,8 +21,8 @@ class Address(models.Model):
 class Email(models.Model):
     sender = models.CharField(max_length=100, db_index=True)
     recipients = models.CharField(max_length=255, db_index=True)
-    subject = models.TextField()
-    body = models.TextField()
+    subject = models.TextField(null=True)
+    body = models.TextField(null=True)
     headers = models.TextField()
     received_on = models.DateTimeField(auto_now_add=True)
 
@@ -35,7 +35,4 @@ class Email(models.Model):
 
 
 class IncomingEmail(Email):
-    pass
-
-class RejectedEmail(Email):
     pass

@@ -4,5 +4,6 @@ import core.views
 
 
 urlpatterns = [
-    url(r'^webhook/$', core.views.webhook),
+    url(r'^webhook/auth/$', core.views.webhook_auth),
+    url(r'^webhook/mail/$', core.views.webhook_mail),
 ]
