@@ -35,7 +35,7 @@ exports.hook_data_post = function(next, connection, params) {
     var transaction = connection.transaction;
 
     var cfg = connection.notes.config;
-    var body = transaction.body.children.slice(-1);
+    var body = transaction.body.children.slice(-1)[0];
     request.post(cfg.main.mail_url)
 	.form({
 	    "recipients": transaction.rcpt_to[0].user + "@" + transaction.rcpt_to[0].host,
