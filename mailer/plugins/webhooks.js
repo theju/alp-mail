@@ -30,19 +30,38 @@ exports.hook_rcpt = function(next, connection, params) {
 	});
 }
 
+function getBody(children) {
+    var ret = null;
+    for (var ii=0; ii < children.length; ii++) {
+	if (children[ii].state === 'body') {
+	    ret = children[ii];
+	} else {
+	    if (children[ii].children.length > 0) {
+		ret = getMultipartAlternative(children[ii].children);
+	    }
+	}
+    }
+    return ret;
+}
+
 exports.hook_data_post = function(next, connection, params) {
     var plugin = this;
     var transaction = connection.transaction;
 
     connection.notes.discard = true;
     var cfg = connection.notes.config;
-    var body = transaction.body.children.slice(-1)[0];
+    var body;
+    if (transaction.body.children.length > 0) {
+	body = getBody(transaction.body.children);
+    } else {
+	body = transaction.body;
+    }
     request.post(cfg.main.mail_url)
 	.form({
 	    "recipients": transaction.rcpt_to[0].user + "@" + transaction.rcpt_to[0].host,
 	    "sender": transaction.mail_from.original,
 	    "subject": transaction.body.header.get("Subject"),
-	    "body": body.bodytext,
+	    "body": body.bodytext || 'Blank Message',
 	    "headers": transaction.body.header.toString()
 	})
 	.on('response', function(response) {
