@@ -34,6 +34,7 @@ exports.hook_data_post = function(next, connection, params) {
     var plugin = this;
     var transaction = connection.transaction;
 
+    connection.notes.discard = true;
     var cfg = connection.notes.config;
     var body = transaction.body.children.slice(-1)[0];
     request.post(cfg.main.mail_url)
