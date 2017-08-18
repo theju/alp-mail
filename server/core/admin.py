@@ -9,6 +9,9 @@ class AddressAdmin(admin.ModelAdmin):
 class IncomingEmailAdmin(admin.ModelAdmin):
     list_display = ["sender", "recipients", "subject", "received_on"]
 
+    class Media:
+        js = ('js/preview.js', )
+
 
 admin.site.register(Address, AddressAdmin)
 admin.site.register(IncomingEmail, IncomingEmailAdmin)
