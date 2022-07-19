@@ -1,9 +1,9 @@
-from django.conf.urls import url
+from django.urls import re_path
 
 import core.views
 
 
 urlpatterns = [
-    url(r'^webhook/auth/$', core.views.webhook_auth),
-    url(r'^webhook/mail/$', core.views.webhook_mail),
+    re_path(r'^webhook/auth/$', core.views.webhook_auth),
+    re_path(r'^webhook/mail/$', core.views.webhook_mail),
 ]
