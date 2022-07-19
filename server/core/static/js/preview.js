@@ -44,7 +44,7 @@ window.addEventListener('load', function() {
         dd.style['min-height'] = '480px';
         bodyTA.parentNode.appendChild(dd);
         bodyTA.style.display = 'none';
-        dd.contentDocument.body.innerHTML = pp.documentElement.outerHTML;
+        dd.contentDocument.write(pp.documentElement.outerHTML);
 
         /* Add display all images link */
         var di = document.createElement('a');
